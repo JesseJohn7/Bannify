@@ -1,6 +1,29 @@
 import SectionTitle from "@/components/SectionTitle";
-import { pricingData } from "@/data/pricingData";
-import { SparklesIcon } from "lucide-react";
+import { Check, Sparkles } from "lucide-react";
+
+const pricingData = [
+    {
+        title: "Basic Plan",
+        price: 29,
+        mostPopular: false,
+        features: ["5 Projects", "10 GB Storage", "Basic Support", "Community Access", "Basic code review"],
+        buttonText: "Get Started",
+    },
+    {
+        title: "Pro Plan",
+        price: 79,
+        mostPopular: true,
+        features: ["50 Projects", "100 GB Storage", "Priority Support", "Team Collaboration", "Advanced Analytics", "Premium Code Review"],
+        buttonText: "Upgrade Now",
+    },
+    {
+        title: "Enterprise Plan",
+        price: 149,
+        mostPopular: false,
+        features: ["Unlimited Projects", "1 TB Storage", "24/7 Dedicated Support", "Custom Integrations", "SLA Guarantee"],
+        buttonText: "Contact Sales",
+    }
+];
 
 export default function Pricing() {
     return (
@@ -9,10 +32,10 @@ export default function Pricing() {
 
             <div className="flex flex-wrap items-center justify-center gap-6 mt-16">
                 {pricingData.map((plan, index) => (
-                    <div key={index} className={`p-6 rounded-2xl max-w-75 w-full shadow-[0px_4px_26px] shadow-black/6 ${plan.mostPopular ? "relative pt-12 bg-gradient-to-b from-indigo-600 to-violet-600" : "bg-white"}`}>
+                    <div key={index} className={`p-6 rounded-2xl max-w-xs w-full shadow-lg ${plan.mostPopular ? "relative pt-12 bg-gradient-to-b from-indigo-600 to-violet-600" : "bg-white"}`}>
                         {plan.mostPopular && (
                             <div className="flex items-center text-xs gap-1 py-1.5 px-2 text-indigo-600 absolute top-4 right-4 rounded bg-white font-medium">
-                                <SparklesIcon size={14} />
+                                <Sparkles size={14} />
                                 <p>Most Popular</p>
                             </div>
                         )}
@@ -23,15 +46,15 @@ export default function Pricing() {
                         </h4>
                         <hr className="border-slate-200 my-8" />
                         <div className={`space-y-2 ${plan.mostPopular ? "text-white" : "text-slate-500"}`}>
-                            {plan.features.map((feature, index) => (
-                                <div key={index} className="flex items-center gap-1.5">
-                                    <feature.icon size={18} className={`${plan.mostPopular ? "text-white" : "text-indigo-600"}`} />
-                                    <span>{feature.name}</span>
+                            {plan.features.map((feature, i) => (
+                                <div key={i} className="flex items-center gap-1.5">
+                                    <Check size={18} className={plan.mostPopular ? "text-white" : "text-indigo-600"} />
+                                    <span>{feature}</span>
                                 </div>
                             ))}
                         </div>
                         <button className={`transition w-full py-3 rounded-lg font-medium mt-8 ${plan.mostPopular ? "bg-white hover:bg-slate-100 text-slate-800" : "bg-indigo-600 hover:bg-indigo-700 text-white"}`}>
-                            <span>{plan.buttonText}</span>
+                            {plan.buttonText}
                         </button>
                     </div>
                 ))}
