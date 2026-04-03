@@ -4,7 +4,7 @@ interface Testimonial {
     image: string;
     name: string;
     handle: string;
-    date: string;
+    
 }
 
 interface TestimonialCardProps {
